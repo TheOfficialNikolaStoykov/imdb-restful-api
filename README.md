@@ -75,8 +75,10 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+```
 
 After restoring the database, run the following commands to apply any outstanding migrations:
+
 ```python
 python manage.py migrate
 ```
