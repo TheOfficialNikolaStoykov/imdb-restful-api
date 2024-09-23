@@ -19,8 +19,68 @@ This project is a RESTful API for managing media content, users, reviews, and st
 - Python 3.11 or higher
 - Django 4.x or higher
 - Virtual environment setup (venv)
+- PostgreSQL
 
-### Step-by-Step Setup
+## Database Setup
+
+### Restore the Database from Backup
+
+This project uses a pre-existing database that you can restore using the provided `full_backup.sql` file. Follow the instructions below to restore the database.
+
+#### Prerequisites:
+- Make sure PostgreSQL (or your chosen database system) is installed and running.
+- You have created a PostgreSQL database where the backup will be restored. You can create a new one using the following command:
+
+    ```bash
+    createdb <your_database_name>
+    ```
+
+#### Steps to Restore the Database
+
+1. **Locate the `full_backup.sql` file**:
+   The `full_backup.sql` file is included in this repository. Ensure that it is in the root folder or accessible from where you are running the command.
+
+2. **Restore the database**:
+   To restore the database, use the following command:
+
+    ```bash
+    psql -U <your_username> -d <your_database_name> -f full_backup.sql
+    ```
+
+   - `<your_username>`: Replace this with your PostgreSQL username.
+   - `<your_database_name>`: Replace this with the name of the database you created for the project.
+   
+   Example:
+
+    ```bash
+    psql -U postgres -d imdb_db -f full_backup.sql
+    ```
+
+   This command will restore the database schema and data from the `full_backup.sql` file.
+
+#### Database Configuration in Django
+
+Ensure that your `settings.py` file is properly configured with your PostgreSQL credentials.
+
+Open `cinebase/settings.py` and modify the `DATABASES` settings as follows:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '<your_database_name>',
+        'USER': '<your_username>',
+        'PASSWORD': '<your_password>',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+After restoring the database, run the following commands to apply any outstanding migrations:
+```python
+python manage.py migrate
+
+## Project Setup
 
 1. Clone the repository:
 
