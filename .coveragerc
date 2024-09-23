@@ -1,0 +1,34 @@
+[run]
+branch = True
+source = .
+omit =
+    cinebase/__init__.py
+    media_app/__init__.py
+    media_app/admin.py
+    media_app/api/pagination.py
+    media_app/api/throttling.py
+    media_app/tests.py
+    user_app/models.py
+    user_app/__init__.py
+    user_app/tests.py
+    */apps.py
+    user_app/views.py
+    media_app/models.py
+    user_app/admin.py
+    media_app/views.py
+    */migrations/*
+    */tests/*
+    manage.py
+    */settings.py
+    */urls.py
+    */wsgi.py
+    */asgi.py
+
+[report]
+fail_under = 100
+show_missing = True
+skip_covered = False
+exclude_lines =
+    pragma: no cover
+    def __str__
+    if __name__ == .__main__.:
